@@ -91,76 +91,70 @@ class StringCalculator extends Calculator {
 
 public class Main {
     private Scanner scanner = new Scanner(System.in);
-    public void readCalculator(){
+    public CalculatorType readCalculator() {
         System.out.println("Enter the type of calculator: ");
         String type = scanner.nextLine();
-        if (type.equals("INTEGER")) {
-            CalculatorType calculatorType = CalculatorType.INTEGER;
-        }
-        else if (type.equals("DOUBLE")) {
-            CalculatorType calculatorType = CalculatorType.DOUBLE;
-        }
-        else if (type.equals("STRING")) {
-            CalculatorType calculatorType = CalculatorType.STRING;
-        }
-        try {
-            CalculatorType calculatorType = CalculatorType.valueOf(type.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            System.out.println("Incorrect type of calculator");
-        }
+        return switch (type) {
+            case "INTEGER" -> CalculatorType.INTEGER;
+            case "DOUBLE" -> CalculatorType.DOUBLE;
+            case "STRING" -> CalculatorType.STRING;
+            default -> CalculatorType.INCORRECT;
+        };
     }
 
 
-    public void readCommandNumber(){
-        int N;
-        while (true) {
-            System.out.println("Enter the number of commands: ");
-            String n = scanner.nextLine();
-            try {
-                N = Integer.parseInt(n);
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Incorrect number of commands");
-            }
+
+    public int readCommandNumber(){
+        int N = scanner.nextInt();
+        if (N < 1 || N > 50) {
+            System.out.println("Incorrect command number");
         }
+        return N;
     }
     public void reportFatalError(){
-        System.out.println("Fatal error");
+        System.out.println("Wrong calculator type");
     }
-    public void parseOperation(String operation){
+    public OperationType parseOperation(String operation){
         String[] operationParts = operation.split(" ");
-        String operationType = operationParts[0];
-        String a = operationParts[1];
-        String b = operationParts[2];
-        switch (operationType) {
-            case "+" -> {
-                OperationType operationType1 = OperationType.ADDITION;
-                break;
-            }
-            case "-" -> {
-                OperationType operationType1 = OperationType.SUBTRACTION;
-                break;
-            }
-            case "*" -> {
-                OperationType operationType1 = OperationType.MULTIPLICATION;
-                break;
-            }
-            case "/" -> {
-                OperationType operationType1 = OperationType.DIVISION;
-                break;
-            }
-        }
-        try {
-            OperationType operationType1 = OperationType.valueOf(operationType.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            System.out.println("Incorrect operation type");
-        }
-
+        String operationT = operationParts[0];
+        return switch (operationT) {
+            case "+" -> OperationType.ADDITION;
+            case "-" -> OperationType.SUBTRACTION;
+            case "*" -> OperationType.MULTIPLICATION;
+            case "/" -> OperationType.DIVISION;
+            default -> OperationType.INCORRECT;
+        };
     }
     public static void main(String[] args) {
         Main main = new Main();
-        main.readCalculator();
-        main.readCommandNumber();
-        main.parseOperation("+ 1 2");
+        CalculatorType calculatorType = main.readCalculator();
+        if (calculatorType == CalculatorType.INCORRECT) {
+            main.reportFatalError();
+            return;
+        }
+        int comm = main.readCommandNumber();
+        String operation = main.scanner.nextLine();
+        OperationType operationType = main.parseOperation(operation);
+        if (operationType == OperationType.INCORRECT) {
+            System.out.println("Wrong operation type");
+            return;
+        }
+        Calculator calculator = switch (calculatorType) {
+            case INTEGER -> new IntegerCalculator();
+            case DOUBLE -> new DoubleCalculator();
+            case STRING -> new StringCalculator();
+            default -> null;
+        };
+        String[] operationParts = operation.split(" ");
+        String a = operationParts[1];
+        String b = operationParts[2];
+        String result = switch (operationType) {
+            case ADDITION -> calculator.add(a, b);
+            case SUBTRACTION -> calculator.subtract(a, b);
+            case MULTIPLICATION -> calculator.multiply(a, b);
+            case DIVISION -> calculator.divide(a, b);
+            default -> null;
+        };
+        System.out.println(result);
     }
 }
