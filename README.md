@@ -1,5 +1,6 @@
 # Assignment-on-ITP
 Assignment 1:
+
 Given a text file input.txt starting with number N followed by N names of maximum length of L English letters each. Each name starts with an uppercase letter followed by non-negative number of lowercase letters without spaces or symbols in between. You have to sort them in non-decreasing Lexicographic Order and write them to another file output.txt.
 
 In case of finding any problems inside the input file (non-English letters, value N which does not correspond to the number of names, or anything violating the assignment rules), the output file should cointain only the next string: Error in the input.txt
@@ -13,6 +14,7 @@ The output file output.txt should contain the list of lexicographically sorted n
 Examples:
 
 input:
+
 5
 Munir
 Alaa
@@ -21,6 +23,7 @@ Mike
 Alexander
 
 out:
+
 Alaa
 Alexander
 Mike
