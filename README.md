@@ -1,31 +1,76 @@
 # Assignment-on-ITP
 Assignment 1:
 
-Given a text file input.txt starting with number N followed by N names of maximum length of L English letters each. Each name starts with an uppercase letter followed by non-negative number of lowercase letters without spaces or symbols in between. You have to sort them in non-decreasing Lexicographic Order and write them to another file output.txt.
+<img src="https://github.com/DeHopen/Assignment-on-ITP/blob/main/Photo/Assignment%201.png" alt=""/>
 
-In case of finding any problems inside the input file (non-English letters, value N which does not correspond to the number of names, or anything violating the assignment rules), the output file should cointain only the next string: Error in the input.txt
+<h1>Examples</h1>
+<h2>input:</h2>
 
-Input
-The first line of input file input.txt should contain only N (1≤N≤100), the total amount of names. The next N lines should contain list of names (1 per line) with length L (1≤L≤100).
+<p>5<br>
+Munir<br>
+Alaa<br>
+Mohamad<br>
+Mike<br>
+Alexander<br><p>
+  
+<h2>output:</h2>
+<p>Alaa<br>
+Alexander<br>
+Mike<br>
+Mohamad<br>
+Munir<br><p>
 
-Output
-The output file output.txt should contain the list of lexicographically sorted names.
-
-Examples:
-
-input:
-
-5
-Munir
-Alaa
-Mohamad
-Mike
-Alexander
-
-out:
-
-Alaa
-Alexander
-Mike
-Mohamad
-Munir
+<h2>input:</h2>
+<p>3<br>
+Abc<br>
+Ab<br>
+A<br>
+<p>
+<h2>output:</h2>
+<p>A<br>
+Ab<br>
+Abc<br>
+<p>
+<h2>input:</h2>
+<p>1<br>
+Z<br>
+<p>
+<h2>outout:</h2>
+<p>Z<p>
+<h2>input:</h2>
+<p>6<br>
+Munir<br>
+Alaa<br>
+Mohamad<br>
+Mike<br>
+Alexander<br>
+<p>
+<h2>output:</h2>
+<p>Error in the input.txt<p>
+<h2>input:</h2>
+<p>5<br>
+Mun1r<br>
+Alaa<br>
+M0hamad<br>
+Mike<br>
+Alexand6r<br>
+<p>
+<h2>output:</h2>
+<p>Error in the input.txt<p>
+<h2>input:</h2>
+<p>3<br>
+Abc<br>
+ab<br>
+A<br>
+<p>
+<h2>output:</h2>
+<p>Error in the input.txt<p>
+<img src="" alt=""/>
+<img src="" alt=""/>
+<img src="" alt=""/>
+<img src="" alt=""/>
+<img src="" alt=""/>
+<img src="" alt=""/>
+<img src="" alt=""/>
+<img src="" alt=""/>
+<img src="" alt=""/>
